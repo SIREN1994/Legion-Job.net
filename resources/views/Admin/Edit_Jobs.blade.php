@@ -27,8 +27,10 @@
             </button>
         </form>
     </div>
+    
     @endforeach
 
 </div>
+
 
 @endsection

@@ -20,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 //URLS//
 
 Route::get('/', function () {
-    return view('home');
+    // Fetch the jobs paginated with 5 jobs per page
+    $jobs = Jobs::paginate(5);
+
+    // Pass the paginated jobs data to the view
+    return view('home', ['jobs' => $jobs]);
 });
 
 Route::get('/form', function () {

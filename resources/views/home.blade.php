@@ -67,7 +67,7 @@
 
 <!-- Job Advertising Section -->
 <div class="flex flex-wrap justify-center">
-
+    <!--This $jpbs data came from app service provider-->
     @foreach ($jobs as $job)
     <div class="bg-white p-8 rounded shadow-md w-96 m-4">
         <img src="{{ asset($job->logo) }}" alt="{{ $job->title }} Logo" class="w-full h-32 object-cover mb-4">
@@ -87,5 +87,7 @@
     @endforeach
 
 </div>
+<!-- Display pagination links -->
+{{ $jobs->links() }}
 
 @endsection

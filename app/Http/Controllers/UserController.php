@@ -58,10 +58,16 @@ class UserController extends Controller
         if ($user) {
             // Check if the provided password matches the hashed password
             if (Hash::check($infs["password"], $user->password)) {
-                // Authentication successful, log in the user
-                auth()->login($user);
-                $req->session()->put('user', $user);
-                return redirect("/");
+
+                if ($user->role === 'admin') {
+                    auth()->login($user);
+                    $req->session()->put('user', $user);
+                    return view('Admin.adminpanel');
+                } else {
+                    auth()->login($user);
+                    $req->session()->put('user', $user);
+                    return redirect("/");
+                }
             } else {
                 // Incorrect password, redirect back with error message
                 return redirect('/form')->withErrors(['password' => 'Password is not correct']);
@@ -87,10 +93,15 @@ class UserController extends Controller
         if ($user) {
             // Check if the provided password matches the hashed password
             if (Hash::check($infs["password"], $user->password)) {
-                // Authentication successful, log in the user
-                auth()->login($user);
-                $req->session()->put('user', $user);
-                return redirect()->intended("/detailjob?_token={$req->_token}&getID={$req->getID}");
+                if ($user->role === 'admin') {
+                    auth()->login($user);
+                    $req->session()->put('user', $user);
+                    return view('Admin.adminpanel');
+                } else {
+                    auth()->login($user);
+                    $req->session()->put('user', $user);
+                    return redirect("/");
+                }
             } else {
                 // Incorrect password, redirect back with error message
                 return redirect("/detailjob?_token={$req->_token}&getID={$req->getID}")->withErrors(['password' => 'Password is not correct']);
@@ -105,7 +116,7 @@ class UserController extends Controller
     {
         auth()->logout();
         session()->flush();
-        return view("home");
+        return redirect("/");
     }
 
     public function uploadcv(Request $request)

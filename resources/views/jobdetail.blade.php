@@ -32,6 +32,27 @@ $resume = $client ? $client->resume : null;
                 <h2 class="text-xl font-semibold mb-2">{{$job->title}}</h2>
                 <p class="text-gray-700">{{$job->company}}</p>
                 <img src="{{$job->logo}}" alt="{{$job->company}}" class="mt-2">
+                <p class="text-xl font-semibold mb-2">{{$job->description}}</p>
+                <br>
+                <h2 class="text-xl font-semibold mb-2">Job Description</h2>
+                <ul class="list-disc ml-6">
+                    @php
+                        $requirements = explode(',', $job->job_description);
+                    @endphp
+                    @foreach($requirements as $requirement)
+                        <li>{{ trim($requirement) }}</li>
+                    @endforeach
+                </ul>
+                <br>
+                <h2 class="text-xl font-semibold mb-2">Job Requirements</h2>
+                <ul class="list-disc ml-6">
+                    @php
+                        $requirements = explode(',', $job->job_requirement);
+                    @endphp
+                    @foreach($requirements as $requirement)
+                        <li>{{ trim($requirement) }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endforeach
     </div>

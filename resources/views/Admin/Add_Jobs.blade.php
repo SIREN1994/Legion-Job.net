@@ -73,13 +73,13 @@
              <!-- Detail Description-->
              <div class="mb-4">
                 <label for="job_description" class="block text-sm font-medium text-gray-600">Job Description</label>
-                <input type="text" id="job_description" name="job_description" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500 resize-y" style="height: 200px;">
+                <textarea id="job_description" name="job_description" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500 resize-y" style="height: 200px;"></textarea>
             </div>
 
-             <!-- Job Requirement-->
+             <!-- Job_Requirements-->
              <div class="mb-4">
-                <label for="job_requirement" class="block text-sm font-medium text-gray-600">Job Requirements</label>
-                <input type="text" id="job_requirement" name="job_requirement" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500 resize-y" style="height: 200px;">
+                <label for="job_requirement" class="block text-sm font-medium text-gray-600">Job Requirement</label>
+                <textarea id="job_requirement" name="job_requirement" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500 resize-y" style="height: 200px;"></textarea>
             </div>
 
            <!-- Job Category -->

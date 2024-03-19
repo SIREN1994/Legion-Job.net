@@ -27,12 +27,5 @@ class AppServiceProvider extends ServiceProvider
             $sale = Jobs::where('job_category', 'Sale')->count();
             $view->with(['all' => $all, 'sale' => $sale]);
         });
-
-
-        // Composer for home.blade.php
-        View::composer('home', function ($view) {
-            $jobs = Jobs::all();
-            $view->with(['jobs' => $jobs]);
-        });
     }
 }
