@@ -47,7 +47,6 @@ if ($user) {
     
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="public/Golden Legion.png" type="image/x-icon">
 </head>
 <body class="bg-gray-100">
 
