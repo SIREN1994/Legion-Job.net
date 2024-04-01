@@ -35,7 +35,7 @@ class AdminController extends Controller
                     // Authentication successful, log in the user
                     auth()->login($user);
                     $req->session()->put('user', $user);
-                    return view('Admin.adminpanel');
+                    return redirect('overview');
                 } else {
                     // User does not have admin role, redirect back with error message
                     return redirect("/admin")->withErrors(['email' => 'You do not have permission to access the admin panel']);
@@ -54,7 +54,7 @@ class AdminController extends Controller
     {
         auth()->logout();
         session()->flush();
-        return view("home");
+        return redirect("/");
     }
 
 

@@ -10,7 +10,7 @@
         <h2 class="text-xl font-semibold mb-2">{{ $job->title }}</h2>
         <h2 class="text-xl font-semibold mb-2">Hiring Company : {{ $job->company }}</h2>
         <p class="text-gray-500 mb-2">{{ $job->tags }}</p>
-        <a href="{{ $job->website }}" target="_blank" class="text-blue-500 hover:underline">{{ $job->website }}</a>
+        <h2 class="text-xl font-semibold mb-2">Location: {{ $job->location }}</h2>
         <!--Edit -->
         <form action="/jobs_edit" method="GET">
             @csrf
@@ -31,6 +31,7 @@
     @endforeach
 
 </div>
+{{$jobs->links()}}
 
 
 @endsection

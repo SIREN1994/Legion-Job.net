@@ -190,6 +190,10 @@ class UserController extends Controller
             if ($client) {
                 $id = $client->client_id;
                 $cv = $client->resume;
+                $pp = $client->profilepic;
+                if (!$pp) {
+                    $pp = "https://static.vecteezy.com/system/resources/previews/029/825/357/original/default-avatar-profile-icon-isolated-on-white-background-social-media-user-sign-symbol-vector.jpg";
+                }
                 $records = Record::where('client_id', $id)->get();
             } else {
                 // Handle case where client record is not found
@@ -198,10 +202,46 @@ class UserController extends Controller
             }
 
             // Pass data to the view
-            return view('User.profile', ['user' => $user, 'id' => $id, 'cv' => $cv, 'records' => $records]);
+            return view('User.profile', ['user' => $user, 'id' => $id, 'cv' => $cv, 'records' => $records, 'pp' => $pp]);
         } else {
             // Handle case where 'user' session variable does not exist
             return redirect('/form')->with('error', 'Please log in to view your profile.');
         }
+    }
+
+    //Single Column Update Method
+    public function uploadpfp(Request $request)
+    {
+        $id = session()->get('user')['id'];
+        $infs = $request->validate([
+            'profilepic' => 'image'
+        ]);
+
+        if ($request->hasFile('profilepic')) {
+            // Validate and move the uploaded file
+            $request->validate([
+                'profilepic' => 'image|max:2048', // Adjust image validation as needed
+            ]);
+
+            // Delete the existing logo file, if it exists
+            $existingLogo = Client::where('client_id', $id)->value('profilepic');
+            if ($existingLogo && file_exists(public_path($existingLogo))) {
+                unlink(public_path($existingLogo));
+            }
+
+            // Move the new logo file
+            $filename = $request->getSchemeAndHttpHost() . '/Profile_pics/' . time() . "." . $request->profilepic->extension();
+            $request->profilepic->move(public_path('Profile_pics'), $filename);
+
+            // Update the logo field in the database
+            $infs['profilepic'] = $filename;
+        }
+
+        $client = Client::find($id);
+        $client->profilepic = $filename;
+        $client->save();
+
+
+        return redirect('/viewprofile');
     }
 }

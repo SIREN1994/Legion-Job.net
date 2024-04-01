@@ -6,6 +6,7 @@ use App\Models\Jobs;
 use App\Models\Client;
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class JobsController extends Controller

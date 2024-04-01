@@ -4,6 +4,25 @@
 <div class="flex justify-center items-center h-screen">
     <div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h1 class="text-2xl font-bold mb-4">Profile Information</h1>
+
+
+        <div class="flex justify-center mb-4">
+            <img src="{{$pp}}" alt="" class="w-32 h-32 object-cover rounded-full border-4 border-white">
+            <form action="/uploadpfp" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-600">Upload Profile Picture</label>
+                    <br>
+                    <input type="file" id="profilepic" name="profilepic" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <button type="submit">Upload Picture</button>
+                </div>
+            </form>
+        </div>
+
+
+
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2" for="name">Name:</label>
             <p class="text-gray-900">{{$user}}</p>

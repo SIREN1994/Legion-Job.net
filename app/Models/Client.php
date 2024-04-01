@@ -17,6 +17,7 @@ class Client extends Authenticatable
         'password',
         'role',
         'resume',
+        'profilepic',
 
     ];
 

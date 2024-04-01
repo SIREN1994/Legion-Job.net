@@ -25,7 +25,18 @@ class AppServiceProvider extends ServiceProvider
         View::composer('Admin.adminpanel', function ($view) {
             $all = Jobs::all()->count();
             $sale = Jobs::where('job_category', 'Sale')->count();
-            $view->with(['all' => $all, 'sale' => $sale]);
+            $marketing = Jobs::where('job_category', 'Marketing')->count();
+            $advertising = Jobs::where('job_category', 'Advertising')->count();
+            $marketing = Jobs::where('job_category', 'Marketing')->count();
+            $HR = Jobs::where('job_category', 'HR')->count();
+            $finance = Jobs::where('job_category', 'Finance')->count();
+            $IT = Jobs::where('job_category', 'IT')->count();
+            $Art = Jobs::where('job_category', 'Creative and Art')->count();
+            $audit = Jobs::where('job_category', 'Audit')->count();
+            $view->with([
+                'all' => $all, 'sale' => $sale, 'marketing' => $marketing, 'advertising' => $advertising,
+                'HR' => $HR, 'finance' => $finance, 'IT' => $IT, 'Art' => $Art, 'audit' => $audit
+            ]);
         });
     }
 }

@@ -1,5 +1,7 @@
 
 <?php
+use App\Models\Client; // Add this line to declare the usage of the Client model
+
 // Check if the user is authenticated
 $user = auth()->user();
 
@@ -7,6 +9,12 @@ $user = auth()->user();
 if ($user) {
     $userName = $user->name;
     $userId = $user->client_id;
+    $pfp = Client::where('client_id', $user->client_id)->value('profilepic');
+
+    // Check if profile picture is null, assign default URL
+    if (!$pfp) {
+        $pfp = "https://static.vecteezy.com/system/resources/previews/029/825/357/original/default-avatar-profile-icon-isolated-on-white-background-social-media-user-sign-symbol-vector.jpg";
+    }
 } else {
     // If not authenticated, use session data (if it exists)
     $sessionUser = session()->get('user', null);
@@ -15,10 +23,17 @@ if ($user) {
     if ($sessionUser) {
         $userName = $sessionUser['name'];
         $userId = $sessionUser['client_id'];
+        $pfp = Client::where('client_id', $userId)->value('profilepic');
+
+        // Check if profile picture is null, assign default URL
+        if (!$pfp) {
+            $pfp = "https://static.vecteezy.com/system/resources/previews/029/825/357/original/default-avatar-profile-icon-isolated-on-white-background-social-media-user-sign-symbol-vector.jpg";
+        }
     } else {
         // Set default values or an empty state for non-authenticated users
         $userName = 'Guest';
         $userId = "00000";
+        $pfp = "https://static.vecteezy.com/system/resources/previews/029/825/357/original/default-avatar-profile-icon-isolated-on-white-background-social-media-user-sign-symbol-vector.jpg";
     }
 }
 ?>
@@ -32,6 +47,7 @@ if ($user) {
     
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="public/Golden Legion.png" type="image/x-icon">
 </head>
 <body class="bg-gray-100">
 
@@ -66,23 +82,17 @@ if ($user) {
                     Jobs Category
                 </a>
                 
-                <!-- Register tab with icon -->
-                <a href="/" class="text-white flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path fill-rule="evenodd" d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z" clip-rule="evenodd" />
-                      </svg>
-                                                                                      
-                    User:{{$userName}} <br>
-                    ID :{{$userId}}
-                </a>
-                <!--View Profile -->
-                <a href="/viewprofile" class="text-white flex items-center">
+                <!-- View Profile -->
+                <div class="flex items-center">
                     <a href="/viewprofile" class="text-white flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z" clip-rule="evenodd" />
-                          </svg>
-                          Profile
-                </a>
+                        <img src="{{$pfp}}" alt="Profile Picture" class="w-16 h-16 object-cover rounded-full border-4 border-white mr-2">
+                        <div>
+                            <p class="text-white font-bold">User: {{$userName}}</p>
+                            <p class="text-white font-bold">ID: {{$userId}}</p>
+                        </div>
+                    </a>
+                </div>
+
 
                 <!-- Logout -->
                 <a href="/logout" class="text-white flex items-center">

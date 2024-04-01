@@ -33,7 +33,7 @@
                         <option value="IT">IT</option>
                         <option value="Audit">Audit</option>
                         <option value="Public Relation">Public Relation</option>
-                        <option value="pussy">Pussy</option>
+                        
                     </select>
                 </div>
 
@@ -41,13 +41,15 @@
                 <div class="relative">
                     <select class="appearance-none w-32 p-3 rounded-full text-black focus:outline-none focus:shadow-outline-blue" name="location">
                         <option value="" >Any City</option>
-                        <option value="japan">Japan</option>
-                        <option value="usa">US</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="USA">USA</option>
+                        <option value="Singapore">Singapore</option>
                     </select>
                 </div>
 
                 <!-- Seek Button (Rectangular) -->
-                <button class="bg-yellow-500 text-blue-500 p-3 rounded hover:bg-yellow-600 hover:text-white focus:outline-none">
+                <button class="bg-black text-white p-3 rounded-lg font-bold hover:bg-yellow-600 hover:text-white focus:outline-none">
                     Seek
                 </button>
             </form>
@@ -75,7 +77,7 @@
         <h2 class="text-xl font-semibold mb-2">{{ $job->title }}</h2>
         <h2 class="text-xl font-semibold mb-2">Hiring Company : {{ $job->company }}</h2>
         <p class="text-gray-500 mb-2">{{ $job->tags }}</p>
-        <a href="{{ $job->website }}" target="_blank" class="text-blue-500 hover:underline">{{ $job->website }}</a>
+        <h2 class="text-xl font-semibold mb-2">Location: {{ $job->location }}</h2>
         <!--Edit -->
         <form action="/detailjob" method="GET">
             @csrf

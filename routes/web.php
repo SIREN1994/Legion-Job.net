@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Models\Jobs;
+use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
-use App\Models\Jobs;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +39,24 @@ Route::get('/signup', function () {
 });
 
 Route::get('/addjobs', function () {
+    if (!Auth::check() || Auth::user()->role !== 'admin') {
+        return view("Admin.adminlogin");
+    }
     return view('Admin.Add_Jobs');
 });
 
 Route::get('/editjobs', function () {
-    $jobs = Jobs::all();
+    if (!Auth::check() || Auth::user()->role !== 'admin') {
+        return view("Admin.adminlogin");
+    }
+    $jobs = Jobs::paginate(6);
     return view('Admin.Edit_Jobs', ['jobs' => $jobs]);
 });
 
 Route::get('/deletejobs', function () {
+    if (!Auth::check() || Auth::user()->role !== 'admin') {
+        return view("Admin.adminlogin");
+    }
     return view('Admin.Delete_Jobs');
 });
 
@@ -76,6 +87,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/uploadcv', [UserController::class, 'uploadcv']);
 Route::post('/updatecv', [UserController::class, 'updatecv']);
 Route::get('/viewprofile', [UserController::class, 'viewprofile']);
+Route::post('/uploadpfp', [UserController::class, 'uploadpfp']);
 
 
 //Admins
@@ -85,5 +97,22 @@ Route::post('/adminlogout', [AdminController::class, 'adminlogout']);
 Route::get('/admin', function () {
     return view('Admin.adminlogin');
 });
+
+Route::get('/adminpage', function () {
+    if (!Auth::check() || Auth::user()->role !== 'admin') {
+        return view("Admin.adminlogin");
+    }
+    return view('Admin.adminpanel');
+});
+
+Route::get('/overview', function () {
+    if (!Auth::check() || Auth::user()->role !== 'admin') {
+        return view("Admin.adminlogin");
+    }
+    $jobs = Jobs::all()->count();
+    $clients = Client::all()->count();
+    return view('Admin.overview', compact('jobs', 'clients'));
+});
+
 Route::post('/downcv', [AdminController::class, 'downcv']);
 Route::get('/datefilter', [AdminController::class, 'datefilter']);
