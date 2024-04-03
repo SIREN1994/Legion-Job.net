@@ -70,7 +70,6 @@ class JobsController extends Controller
     }
 
 
-
     public function updatejob(Request $request)
     {
         // Validate form fields
@@ -137,6 +136,18 @@ class JobsController extends Controller
     {
         $jobs = Jobs::where('job_category', $value)->get();
         return view('Admin.Edit_Jobs', ['jobs' => $jobs]);
+    }
+
+    public function company($value)
+    {
+        $companies = Jobs::where('company', $value)->paginate(6);
+        return view('companies', ['companies' => $companies]);
+    }
+
+    public function category($value)
+    {
+        $categories = Jobs::where('job_category', $value)->paginate(6);
+        return view('category', ['categories' => $categories]);
     }
 
     public function search(Request $request)

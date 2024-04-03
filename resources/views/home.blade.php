@@ -6,6 +6,7 @@
 
 
 <br>
+<!--Hero Section-->
 <section class="bg-blue-500 text-white py-16">
     
     <div class="container mx-auto text-center">

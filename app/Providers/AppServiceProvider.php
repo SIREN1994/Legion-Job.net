@@ -38,5 +38,23 @@ class AppServiceProvider extends ServiceProvider
                 'HR' => $HR, 'finance' => $finance, 'IT' => $IT, 'Art' => $Art, 'audit' => $audit
             ]);
         });
+
+        View::composer('header', function ($view) {
+            $companies = Jobs::select('company')->distinct()->get();
+            $categories = Jobs::select('job_category')->distinct()->get();
+            $view->with([
+                'companies' => $companies,
+                'categories' => $categories
+            ]);
+        });
+
+        View::composer('header2', function ($view) {
+            $companies = Jobs::select('company')->distinct()->get();
+            $categories = Jobs::select('job_category')->distinct()->get();
+            $view->with([
+                'companies' => $companies,
+                'categories' => $categories
+            ]);
+        });
     }
 }

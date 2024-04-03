@@ -72,6 +72,8 @@ Route::get('/jobs_edit', [JobsController::class, 'jobedit']);
 Route::post('/updatejob', [JobsController::class, 'updatejob']);
 Route::post('/delete', [JobsController::class, 'delete']);
 Route::get('/show/{value}', [JobsController::class, 'show']);
+Route::get('/company/{value}', [JobsController::class, 'company']);
+Route::get('/category/{value}', [JobsController::class, 'category']);
 Route::get('/search', [JobsController::class, 'search']);
 Route::get('/detailjob', [JobsController::class, 'detailjob']);
 Route::get('/query1', [JobsController::class, 'query1']);

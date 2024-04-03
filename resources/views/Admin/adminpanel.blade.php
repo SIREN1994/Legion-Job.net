@@ -47,6 +47,7 @@ if ($user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Panel</title>
+    <link rel="icon" href="Legion Icon.png" type="image/x-icon">
 
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -113,7 +114,7 @@ if ($user) {
                             <li><a href="/show/Creative and Art" class="block px-4 py-2 hover:bg-gray-700">Creative & Art ({{$Art}})</a></li>
                             <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Public Relation (0)</a></li>
                             
-                            <!-- Search box -->
+                            
                             <!-- Search box -->
                             <li class="flex flex-col items-center space-y-2">
                                 <form action="/search" method="GET" class="flex flex-col items-center space-y-2">
