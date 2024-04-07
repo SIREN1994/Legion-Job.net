@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function applicants(Request $request)
     {
-        $records = Record::all();
+        $records = Record::paginate(4);
         return view('Admin.Applicants', compact('records'));
     }
 

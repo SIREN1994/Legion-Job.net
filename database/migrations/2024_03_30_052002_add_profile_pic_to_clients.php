@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->string('profilepic');
+            // Make the 'profilepic' column nullable
+            $table->string('profilepic')->nullable();
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('clients', function (Blueprint $table) {
-            //
+            // Revert the 'profilepic' column to be not nullable
+            $table->string('profilepic')->nullable(false)->change();
         });
     }
 };

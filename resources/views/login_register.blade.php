@@ -11,9 +11,28 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
 </head>
-<body x-data="{ ShowReg: true }" class="flex items-center justify-center min-h-screen bg-gray-100">
+<body x-data="{ showRegister: false }" class="flex items-center justify-center min-h-screen bg-gray-100">
 
-    <div class="bg-white p-8 rounded shadow-md w-96" x-show="ShowReg">
+    <div class="bg-white p-8 rounded shadow-md w-96" x-show="!showRegister">
+        <h2 class="text-2xl font-semibold mb-4">Login</h2>
+        <form action="/login" method="POST">
+            @csrf
+            <div class="mb-4">
+                <label for="name" class="block text-gray-600 text-sm font-semibold mb-2">Username</label>
+                <input type="text" id="name" name="name" class="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-600 text-sm font-semibold mb-2">Password</label>
+                <input type="password" id="password" name="password" class="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
+        </form>
+        <p class="mt-3 text-center">Don't have an account? <a href="#" x-on:click="showRegister = true" style="color: blue">Register here</a></p>
+    </div>
+
+    <br>
+
+    <div class="bg-white p-8 rounded shadow-md w-96" x-show="showRegister">
         <h2 class="text-2xl font-semibold mb-4">Register</h2>
 
         @if ($errors->any())
@@ -47,26 +66,7 @@
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Register</button>
         </form>
-        <p class="mt-3 text-center">Already Have An Account? <a href="#" x-on:click="ShowReg = false" style="color: blue">Log In here</a></p>
-    </div>
-
-    <br>
-
-    <div class="bg-white p-8 rounded shadow-md w-96" x-show="!ShowReg">
-        <h2 class="text-2xl font-semibold mb-4">Login</h2>
-        <form action="/login" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label for="name" class="block text-gray-600 text-sm font-semibold mb-2">Username</label>
-                <input type="text" id="name" name="name" class="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="password" class="block text-gray-600 text-sm font-semibold mb-2">Password</label>
-                <input type="password" id="password" name="password" class="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
-        </form>
-        <p class="mt-3 text-center">Don't have an account? <a href="#" x-on:click="ShowReg = true" style="color: blue">Register here</a></p>
+        <p class="mt-3 text-center">Already Have An Account? <a href="#" x-on:click="showRegister = false" style="color: blue">Log In here</a></p>
     </div>
 </body>
 </html>

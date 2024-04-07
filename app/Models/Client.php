@@ -37,7 +37,18 @@ class Client extends Authenticatable
 
         // Listen for the creating event and generate a unique client_id
         static::creating(function ($client) {
-            $client->client_id = 'aa' . str_pad(static::count() + 1, 3, '0', STR_PAD_LEFT);
+            // Get the maximum client ID from the database
+            $maxClientId = static::max('client_id');
+
+            // Extract the numeric part of the ID and increment it by one
+            $numericPart = intval(substr($maxClientId, 2));
+            $newNumericPart = $numericPart + 1;
+
+            // Generate the new client ID with leading zeros
+            $newClientId = 'aa' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+
+            // Assign the new client ID to the model
+            $client->client_id = $newClientId;
         });
     }
 

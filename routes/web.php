@@ -33,6 +33,10 @@ Route::get('/form', function () {
     return view('Register_Login');
 });
 
+Route::get('/form2', function () {
+    return view('login_register');
+});
+
 
 Route::get('/signup', function () {
     return view('Register_Login');
@@ -52,6 +56,7 @@ Route::get('/editjobs', function () {
     $jobs = Jobs::paginate(6);
     return view('Admin.Edit_Jobs', ['jobs' => $jobs]);
 });
+
 
 Route::get('/deletejobs', function () {
     if (!Auth::check() || Auth::user()->role !== 'admin') {

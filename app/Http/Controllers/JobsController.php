@@ -134,7 +134,7 @@ class JobsController extends Controller
     //the predefined user interaction method to show list of choice
     public function show($value)
     {
-        $jobs = Jobs::where('job_category', $value)->get();
+        $jobs = Jobs::where('job_category', $value)->paginate(6);
         return view('Admin.Edit_Jobs', ['jobs' => $jobs]);
     }
 

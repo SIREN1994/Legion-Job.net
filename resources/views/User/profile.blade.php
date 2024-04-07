@@ -10,16 +10,14 @@
             <img src="{{$pp}}" alt="" class="w-32 h-32 object-cover rounded-full border-4 border-white">
             <form action="/uploadpfp" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="mb-4">
+                <div class="ml-4">
                     <label for="description" class="block text-sm font-medium text-gray-600">Upload Profile Picture</label>
-                    <br>
-                    <input type="file" id="profilepic" name="profilepic" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                    <input type="file" id="profilepic" name="profilepic" class="mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500">
                 </div>
-                <div>
-                    <button type="submit">Upload Picture</button>
-                </div>
+                <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">Upload Picture</button>
             </form>
         </div>
+
 
 
 

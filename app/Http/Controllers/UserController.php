@@ -29,17 +29,19 @@ class UserController extends Controller
                 ->withInput();
         }
 
+
         // Validation passed, create a new user
         $user = Client::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+
         ]);
 
         // You may optionally log in the user after registration
         auth()->login($user);
         session()->put(["user" => $user]);
-        return redirect('/auth');
+        return redirect('/');
     }
 
 

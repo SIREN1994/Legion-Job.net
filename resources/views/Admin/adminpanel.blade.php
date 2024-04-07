@@ -130,8 +130,7 @@ if ($user) {
                       
                         </ul>
                     </li >
-                    <li class="mb-2"><a href="/deletejobs" class="block px-4 py-2 hover:bg-gray-700">Delete Jobs</a></li>
-                    <!-- Add more navigation items as needed -->  
+                    
                 </ul>
             </nav>
         </aside>
