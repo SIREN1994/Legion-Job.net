@@ -68,6 +68,9 @@ Route::get('/deletejobs', function () {
 Route::get('/auth', function () {
     return view('authtest');
 });
+Route::get('/mailer', function () {
+    return view('mailer');
+});
 
 
 

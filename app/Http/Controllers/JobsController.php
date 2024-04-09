@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Notify;
 use App\Models\Jobs;
 use App\Models\Client;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class JobsController extends Controller
@@ -215,6 +217,7 @@ class JobsController extends Controller
         $job_title = Jobs::where('job_id', $jobid)->value('title');
         $job_company = Jobs::where('job_id', $jobid)->value('company');
 
+
         // Check if a record already exists for the client and job id
         $existingRecord = Record::where('client_id', $user_id)
             ->where('job_id', $jobid)
@@ -234,8 +237,12 @@ class JobsController extends Controller
             $record->cv = $cv;
             $record->save();
 
+
+
+            Mail::to($user_email)->send(new Notify($user, $user_email));
+
             return redirect()->intended("/detailjob?_token={$request->_token}&getID={$request->getID}")
-                ->with('success', 'You successfully applied for this job!');
+                ->with('success', 'You successfully applied for this job! Go check your email');
         }
     }
 }
