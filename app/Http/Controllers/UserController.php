@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Push;
 use App\Models\Client;
 use App\Models\Record;
+use App\Mail\Newpassword;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,7 +23,6 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:8|confirmed:password_confirmation',
-
         ]);
 
         // Check for validation errors
@@ -29,13 +32,11 @@ class UserController extends Controller
                 ->withInput();
         }
 
-
         // Validation passed, create a new user
         $user = Client::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-
+            'password' => Hash::make($request->input('password')), // Hash the password using Bcrypt
         ]);
 
         // You may optionally log in the user after registration
@@ -50,12 +51,12 @@ class UserController extends Controller
     {
         // Validate form inputs
         $infs = $req->validate([
-            "name" => "required",
+            "email" => "required",
             "password" => "required"
         ]);
 
         // Find the user by name
-        $user = Client::where("name", $infs["name"])->first();
+        $user = Client::where("email", $infs["email"])->first();
 
         if ($user) {
             // Check if the provided password matches the hashed password
@@ -72,11 +73,11 @@ class UserController extends Controller
                 }
             } else {
                 // Incorrect password, redirect back with error message
-                return redirect('/form')->withErrors(['password' => 'Password is not correct']);
+                return redirect('/form2')->withErrors(['password' => 'Password is not correct']);
             }
         } else {
             // User not found, redirect back with error message
-            return redirect('/form')->withErrors(['name' => 'Username is not correct']);
+            return redirect('/form2')->withErrors(['email' => 'Email is not correct']);
         }
     }
 
@@ -244,6 +245,61 @@ class UserController extends Controller
         $client->save();
 
 
-        return redirect('/viewprofile');
+        return redirect()->back()->with('success', 'Profile Picture uploaded successfully!');
+    }
+
+
+    public function changepassword(Request $request)
+    {
+        $client = session()->get('user')['name'];
+
+        if (empty($request->oldpass) || empty($request->newpass)) {
+            return redirect()->back()->with('error', 'Both old and new passwords are required.');
+        }
+
+        $validatedData = $request->validate([
+            "oldpass" => "required",
+            "newpass" => "required"
+        ], [
+            'oldpass.required' => 'Old password is required.',
+            'newpass.required' => 'New password is required.'
+        ]);
+
+        $user = Client::where("name", $client)->first();
+
+        if ($user) {
+            // Check if the provided old password matches the hashed password
+            if (Hash::check($validatedData["oldpass"], $user->password)) {
+                // Hash the new password
+                $newPassword = Hash::make($validatedData['newpass']);
+                // Update the user's password
+                $user->password = $newPassword;
+                $user->save();
+                return redirect()->back()->with('success', 'Password changed successfully.');
+            } else {
+                return redirect()->back()->with('error', 'Incorrect current password.');
+            }
+        }
+    }
+
+    public function newpassword(Request $request)
+    {
+        $infs = $request->validate(['email' => 'required']);
+        $email = $request->email;
+        $user = Client::where("email", $email)->first();
+
+        if ($user) {
+            $token = Str::random(10);
+            $raw = $token;
+
+            // Save the token in the database
+
+            $user->password = Hash::make($token);
+            $user->save();
+            Mail::to($email)->send(new Push($raw));
+            return view('notify');
+        } else {
+            return redirect()->back()->with('error', 'No User Found, Enter The Email Correctly')->withInput();
+        }
     }
 }

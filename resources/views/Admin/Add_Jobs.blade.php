@@ -15,7 +15,7 @@
                  @endforeach
              </ul>
          </div>
-     @endif
+        @endif
 
          <!-- Check if there is a success message in the session -->
          @if(session('success'))

@@ -241,6 +241,7 @@ class JobsController extends Controller
 
             Mail::to($user_email)->send(new Notify($user, $user_email));
 
+
             return redirect()->intended("/detailjob?_token={$request->_token}&getID={$request->getID}")
                 ->with('success', 'You successfully applied for this job! Go check your email');
         }

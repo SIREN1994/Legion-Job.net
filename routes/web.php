@@ -20,6 +20,9 @@ use App\Http\Controllers\AdminController;
 */
 
 //URLS//
+Route::get('/error', function () {
+    return view('errorpage');
+});
 
 Route::get('/', function () {
     // Fetch the jobs paginated with 5 jobs per page
@@ -68,8 +71,21 @@ Route::get('/deletejobs', function () {
 Route::get('/auth', function () {
     return view('authtest');
 });
+
 Route::get('/mailer', function () {
     return view('mailer');
+});
+
+Route::get('/newpass', function () {
+    return view('newpassword');
+});
+
+Route::get('/forgotpassword', function () {
+    return view('forgetpassword');
+});
+
+Route::get('/noti', function () {
+    return view('notify');
 });
 
 
@@ -98,6 +114,9 @@ Route::post('/uploadcv', [UserController::class, 'uploadcv']);
 Route::post('/updatecv', [UserController::class, 'updatecv']);
 Route::get('/viewprofile', [UserController::class, 'viewprofile']);
 Route::post('/uploadpfp', [UserController::class, 'uploadpfp']);
+Route::post('/changepassword', [UserController::class, 'changepassword']);
+Route::post('/newpassword', [UserController::class, 'newpassword']);
+
 
 
 //Admins

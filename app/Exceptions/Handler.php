@@ -27,4 +27,9 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    //public function render($request, Throwable $exception)
+    //{
+    // return response()->view('errorpage', [], 500);
+    //}
 }
