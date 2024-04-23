@@ -26,7 +26,7 @@ Route::get('/error', function () {
 
 Route::get('/', function () {
     // Fetch the jobs paginated with 5 jobs per page
-    $jobs = Jobs::paginate(5);
+    $jobs = Jobs::paginate(6);
 
     // Pass the paginated jobs data to the view
     return view('home', ['jobs' => $jobs]);
@@ -44,6 +44,7 @@ Route::get('/form2', function () {
 Route::get('/signup', function () {
     return view('Register_Login');
 });
+
 
 Route::get('/addjobs', function () {
     if (!Auth::check() || Auth::user()->role !== 'admin') {
@@ -86,6 +87,10 @@ Route::get('/forgotpassword', function () {
 
 Route::get('/noti', function () {
     return view('notify');
+});
+
+Route::get('/testx', function () {
+    return view('carousel');
 });
 
 

@@ -48,7 +48,7 @@ $resume = $client ? $client->resume : null;
             </div>
             
             <div class="flex justify-center mb-4">
-                <img src="{{$job->logo}}" alt="{{$job->company}}" class="w-32 h-32 object-cover rounded-full border-4 border-white">
+                <img src="{{$job->logo}}" alt="{{$job->company}}" class="w-82 h-40 object-cover rounded-full border-4 border-white">
             </div>
             <p class="text-lg font-semibold mb-4">{{$job->description}}</p>
             <div class="mb-4">
@@ -151,7 +151,7 @@ $resume = $client ? $client->resume : null;
             </div>
             
             <div class="flex justify-center mb-4">
-                <img src="{{$job->logo}}" alt="{{$job->company}}" class="w-32 h-32 object-cover rounded-full border-4 border-white">
+                <img src="{{$job->logo}}" alt="{{$job->company}}" class="w-82 h-40 object-cover rounded-full border-4 border-white">
             </div>
             <p class="text-lg font-semibold mb-4">{{$job->description}}</p>
             <div class="mb-4">

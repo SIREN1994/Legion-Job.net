@@ -6,12 +6,28 @@
 
 
 <br>
+<!--Pop Up Section-->
+<div class="relative z-50">
+    <div x-data="{ isOpen: false }" x-init="setTimeout(() => isOpen = true, 3000)">
+        <div x-show="isOpen" class="fixed inset-0 flex items-center justify-center">
+            <div class="bg-white p-4 rounded-lg shadow-md h-auto max-h-600 w-auto mt-10 mb-10 overflow-y-auto"> <!-- Added overflow-y-auto -->
+                <button @click="isOpen = false" class="absolute top-0 right-0 p-2 m-2">&times;</button>
+                <div class="text-center">
+                    <img src="PU.png" alt="Popup Image" class="max-w-300 max-h-300 mx-auto"> <!-- Adjusted max width and height -->
+                </div>
+                <button @click="isOpen = false" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">Close</button> <!-- Adjusted margin top -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--Hero Section-->
-<section class="bg-blue-500 text-white py-16">
+<section class="bg-blue-500 text-white py-16" style="background-image: url('/5.jpg'); background-size: cover; background-position: center;">
     
     <div class="container mx-auto text-center">
         <h1 class="text-4xl font-extrabold mb-4">Find Your Dream Job</h1>
-        <p class="text-lg mb-8">Explore thousands of job opportunities and take the next step in your career.</p>
+        <p class="text-lg mb-8">Explore various job opportunities and take the next step in your career.</p>
         <div class="flex justify-center">
             
             <form action="/query1" method="GET" class="flex space-x-2">
@@ -28,11 +44,10 @@
                         <option value="Sale">Sales</option>
                         <option value="Marketing">Marketing</option>
                         <option value="Advertising">Advertising</option>
-                        <option value="HR">HR</option>
+                        <option value="Human Resource">HR</option>
                         <option value="Finance">Finance</option>
                         <option value="Logistic">Logistic</option>
                         <option value="IT">IT</option>
-                        <option value="Audit">Audit</option>
                         <option value="Public Relation">Public Relation</option>
                         
                     </select>
