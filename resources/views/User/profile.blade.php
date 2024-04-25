@@ -27,7 +27,7 @@
         <!-- Profile Information Form -->
         <div class="flex justify-center mb-4">
             <img src="{{$pp}}" alt="" class="w-32 h-32 object-cover rounded-full border-4 border-white">
-            <form action="/uploadpfp" method="POST" enctype="multipart/form-data">
+            <form action="/uploadX" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="ml-4">
                     <label for="description" class="block text-sm font-medium text-gray-600">Upload Profile Picture</label>

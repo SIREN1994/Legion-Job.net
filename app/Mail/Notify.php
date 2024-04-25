@@ -15,10 +15,14 @@ class Notify extends Mailable
 
     public $user;
     public $user_email;
-    public function __construct($user, $user_email)
+    public $job_title;
+    public $job_company;
+    public function __construct($user, $user_email, $job_title, $job_company)
     {
         $this->user = $user;
         $this->user_email = $user_email;
+        $this->job_title = $job_title;
+        $this->job_company = $job_company;
     }
 
     public function build()

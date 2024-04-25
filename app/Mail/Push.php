@@ -13,10 +13,11 @@ class Push extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $token;
-    public function __construct($token)
+
+    public $raw;
+    public function __construct($raw)
     {
-        $this->token = $token;
+        $this->raw = $raw;
     }
 
     public function build()

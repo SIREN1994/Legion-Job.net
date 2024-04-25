@@ -239,7 +239,7 @@ class JobsController extends Controller
 
 
 
-            Mail::to($user_email)->send(new Notify($user, $user_email));
+            Mail::to($user_email)->send(new Notify($user, $user_email, $job_title, $job_company));
 
 
             return redirect()->intended("/detailjob?_token={$request->_token}&getID={$request->getID}")

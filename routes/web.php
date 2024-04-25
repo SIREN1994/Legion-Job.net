@@ -121,6 +121,7 @@ Route::get('/viewprofile', [UserController::class, 'viewprofile']);
 Route::post('/uploadpfp', [UserController::class, 'uploadpfp']);
 Route::post('/changepassword', [UserController::class, 'changepassword']);
 Route::post('/newpassword', [UserController::class, 'newpassword']);
+Route::post('/uploadX', [UserController::class, 'uploadX']);
 
 
 

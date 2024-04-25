@@ -12,7 +12,7 @@
             🎉 Congratulations, <span class="text-purple-600">{{$user}}</span>! 🎉
         </h1>
         <h2 class="text-2xl font-semibold text-center text-blue-600 mb-4">Your Application is a Success!</h2>
-        <p class="text-lg text-center text-gray-700 font-bold mb-8">We are thrilled to inform you that your application for the <span class="font-bold text-purple-600">Supervisor position</span> at <span class="font-bold text-purple-600">NETFLIX Company</span> has been successful!</p>
+        <p class="text-lg text-center text-gray-700 font-bold mb-8">We are thrilled to inform you that your application for the <span class="font-bold text-purple-600">{{$job_title}}</span> at <span class="font-bold text-purple-600">{{$job_company}} Company</span> has been successful!</p>
         <div class="thank-you flex flex-col items-center justify-center mt-8">
             <img src="https://www.luvzilla.com/wp-content/uploads/2021/05/Thank-You-Messages-For-Attending-Meeting.jpg" alt="Thank You" class="w-64 mb-4">
             <h2 class="text-2xl font-semibold text-center text-green-500 mb-4">Thank You for Choosing Legion Jobs.net</h2>

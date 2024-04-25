@@ -302,4 +302,26 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'No User Found, Enter The Email Correctly')->withInput();
         }
     }
+
+
+    public function uploadX(Request $request)
+    {
+        $id = session()->get('user')['id'];
+        $request->validate([
+            'profilepic' => 'image',
+        ]);
+
+        if ($request->hasFile('profilepic')) {
+            $file = $request->file('profilepic');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $path = '/Pix/';
+            $file->move(public_path($path), $filename);
+        }
+        $client = Client::find($id);
+        $client->profilepic = $path . $filename;
+        $client->save();
+
+        return redirect()->back()->with('success', 'Profile Picture uploaded successfully!');
+    }
 }

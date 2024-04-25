@@ -9,8 +9,8 @@
 <body class="bg-gradient-to-br from-purple-500 to-blue-500 p-4">
     <div class="container mx-auto bg-white p-6 rounded-lg shadow-lg">
 
-        <h2 class="text-2xl font-semibold text-center text-blue-600 mb-4">Your New Password Is</h2>
-        <p class="text-lg text-center text-gray-800 font-bold mb-4">{{$token}}</p>
+        <h2 class="text-2xl font-semibold text-center text-blue-600 mb-4"> Your New Password Is</h2>
+        <p class="text-lg text-center text-gray-800 font-bold mb-4">{{$raw}}</p>
 
     </div>
 <div class="text-center text-gray-600 font-bold mt-8">
