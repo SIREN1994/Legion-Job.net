@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,8 @@ Route::get('/testx', function () {
     return view('carousel');
 });
 
+Route::get('/checkX', [AdminController::class, 'checkX']);
+
 
 
 //JOBS//
@@ -151,3 +154,7 @@ Route::get('/overview', function () {
 
 Route::post('/downcv', [AdminController::class, 'downcv']);
 Route::get('/datefilter', [AdminController::class, 'datefilter']);
+
+
+//TEST CONTROLLER
+Route::get('/send-email', [TestController::class, 'sendEmail']);

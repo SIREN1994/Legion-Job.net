@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+
 class UserController extends Controller
 {
     public function register(Request $request)
@@ -296,8 +297,9 @@ class UserController extends Controller
 
             $user->password = Hash::make($token);
             $user->save();
-            Mail::to($email)->send(new Push($raw));
-            return view('notify');
+
+
+            return view('newpassword', ["raw" => $raw]);
         } else {
             return redirect()->back()->with('error', 'No User Found, Enter The Email Correctly')->withInput();
         }

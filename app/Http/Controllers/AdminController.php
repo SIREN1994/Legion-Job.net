@@ -84,4 +84,15 @@ class AdminController extends Controller
         // Pass the filtered records to the view
         return view('Admin.applicants', compact('records'));
     }
+
+    public function checkX(Request $request)
+    {
+        $mailPort = config('mail.port');
+
+        if ($mailPort) {
+            return "The current mail port is: " . $mailPort;
+        } else {
+            return "The mail port could not be determined.";
+        }
+    }
 }

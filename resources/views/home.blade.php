@@ -8,12 +8,12 @@
 <br>
 <!--Pop Up Section-->
 <div class="relative z-50">
-    <div x-data="{ isOpen: false }" x-init="setTimeout(() => isOpen = true, 3000)">
+    <div x-data="{ isOpen: false }" x-init="setTimeout(() => isOpen = true, 6000)">
         <div x-show="isOpen" class="fixed inset-0 flex items-center justify-center">
             <div class="bg-white p-4 rounded-lg shadow-md h-auto max-h-600 w-auto mt-10 mb-10 overflow-y-auto"> <!-- Added overflow-y-auto -->
                 <button @click="isOpen = false" class="absolute top-0 right-0 p-2 m-2">&times;</button>
                 <div class="text-center">
-                    <img src="PU.png" alt="Popup Image" class="max-w-300 max-h-300 mx-auto"> <!-- Adjusted max width and height -->
+                    <img src="PopUpSmallX.png" alt="Popup Image" class="max-w-300 max-h-300 mx-auto"> <!-- Adjusted max width and height -->
                 </div>
                 <button @click="isOpen = false" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">Close</button> <!-- Adjusted margin top -->
             </div>

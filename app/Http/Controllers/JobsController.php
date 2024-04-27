@@ -239,11 +239,11 @@ class JobsController extends Controller
 
 
 
-            Mail::to($user_email)->send(new Notify($user, $user_email, $job_title, $job_company));
+            //Mail::to($user_email)->send(new Notify($user, $user_email, $job_title, $job_company));
 
 
             return redirect()->intended("/detailjob?_token={$request->_token}&getID={$request->getID}")
-                ->with('success', 'You successfully applied for this job! Go check your email');
+                ->with('success', 'You successfully applied for this job! Your job applied history can be viewed in your profile Information page.');
         }
     }
 }

@@ -28,7 +28,7 @@
                 <input type="text" id="email" name="email" class="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Request</button>
-            <p class="mt-3 text-center"> A New Password Will Be Sent To Your Email </p>
+            <p class="mt-3 text-center"> A New Password Will Be Generated </p>
         </form>
     </div>
 

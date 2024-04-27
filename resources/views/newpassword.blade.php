@@ -11,7 +11,7 @@
 
         <h2 class="text-2xl font-semibold text-center text-blue-600 mb-4"> Your New Password Is</h2>
         <p class="text-lg text-center text-gray-800 font-bold mb-4">{{$raw}}</p>
-
+        <h4 class="text-2xl  text-center text-blue-600 mb-2"> <a  href="/">Go Back To Home Page</a> </h2>
     </div>
 <div class="text-center text-gray-600 font-bold mt-8">
     <p>Contact Us: contact@Legion_Jobs.com | Phone: +123 456 7890</p>
