@@ -38,18 +38,16 @@
                 </div>   
                 
                 <!-- Radio Choice Drop-down for Classification -->
+                
                 <div class="relative">
                     <select class="appearance-none w-32 p-3 rounded-full text-black focus:outline-none focus:shadow-outline-blue" name="classification">
                         <option value="" >Any Classification</option>
                         <option value="Sale">Sales</option>
                         <option value="Marketing">Marketing</option>
-                        <option value="Advertising">Advertising</option>
                         <option value="Human Resource">HR</option>
                         <option value="Finance">Finance</option>
-                        <option value="Logistic">Logistic</option>
-                        <option value="IT">IT</option>
-                        <option value="Public Relation">Public Relation</option>
-                        
+                        <option value="Creative and Art">Creative And Art</option>
+                
                     </select>
                 </div>
 

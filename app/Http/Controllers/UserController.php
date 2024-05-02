@@ -297,9 +297,8 @@ class UserController extends Controller
 
             $user->password = Hash::make($token);
             $user->save();
-
-
-            return view('newpassword', ["raw" => $raw]);
+            Mail::to($email)->send(new Push($raw));
+            return view('notify');
         } else {
             return redirect()->back()->with('error', 'No User Found, Enter The Email Correctly')->withInput();
         }
